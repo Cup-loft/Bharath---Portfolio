@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharath Raj - Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --ink: #111110;
+    --muted: #6f6e69;
+    --border: #e5e3dc;
+    --blue: #1847d6;
+    --blue-dim: #eef1fd;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Geist', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 15px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250,250,248,.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-name { font-family: 'Instrument Serif', serif; font-size: 17px; }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color .15s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  .page { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+
+  .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+  .hero-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+  .hero h1 { font-family: 'Instrument Serif', serif; font-size: clamp(42px, 7vw, 64px); line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 20px; }
+  .hero h1 span { font-style: italic; color: var(--blue); }
+  .hero-bio { font-size: 16px; color: #333; max-width: 580px; line-height: 1.75; margin-bottom: 32px; }
+  .hero-contact { display: flex; flex-wrap: wrap; gap: 20px; font-size: 13px; }
+  .hero-contact a { color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .15s; }
+  .hero-contact a:hover { color: var(--blue); }
+  .contact-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); display: inline-block; }
+
+  .section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
+  .section-num { font-family: 'Instrument Serif', serif; font-size: 13px; font-style: italic; color: var(--muted); }
+  .section-title { font-family: 'Instrument Serif', serif; font-size: 26px; letter-spacing: -.4px; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 30px; }
+  .card-label { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; display: inline-flex; align-items: center; gap: 6px; }
+  .card-label::before { content: ''; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; display: inline-block; }
+
+  .blog-title { font-family: 'Instrument Serif', serif; font-size: 22px; letter-spacing: -.3px; margin-bottom: 16px; line-height: 1.3; }
+  .read-time { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+  .blog-body h3 { font-size: 12px; font-weight: 600; color: var(--muted); margin: 20px 0 6px; text-transform: uppercase; letter-spacing: .05em; }
+  .blog-body p { font-size: 14.5px; color: #3a3a38; line-height: 1.78; margin-bottom: 12px; }
+  .blog-body ul { list-style: none; margin: 8px 0 16px; }
+  .blog-body ul li { font-size: 14.5px; color: #3a3a38; line-height: 1.7; padding-left: 18px; position: relative; margin-bottom: 8px; }
+  .blog-body ul li::before { content: '•'; position: absolute; left: 0; color: var(--muted); }
+
+  .linkedin-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 30px; }
+  .linkedin-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', serif; font-size: 18px; color: #fff; flex-shrink: 0; }
+  .linkedin-name { font-weight: 600; font-size: 14px; }
+  .linkedin-sub { font-size: 12px; color: var(--muted); }
+  .linkedin-body { font-size: 14.5px; color: #2a2a28; line-height: 1.75; white-space: pre-line; }
+  .linkedin-footer { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; gap: 20px; }
+  .li-action { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+  .lp-box { background: var(--ink); color: #f5f4f0; border-radius: var(--radius); padding: 40px 36px; position: relative; overflow: hidden; }
+  .lp-box::before { content: ''; position: absolute; top: -80px; right: -80px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(24,71,214,.35) 0%, transparent 70%); pointer-events: none; }
+  .lp-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #7aa4ff; margin-bottom: 12px; }
+  .lp-headline { font-family: 'Instrument Serif', serif; font-size: 30px; letter-spacing: -.5px; line-height: 1.2; margin-bottom: 12px; }
+  .lp-headline em { font-style: italic; color: #7aa4ff; }
+  .lp-sub { font-size: 15px; color: #aaa9a4; line-height: 1.7; max-width: 520px; margin-bottom: 28px; }
+  .lp-benefits { list-style: none; margin-bottom: 32px; }
+  .lp-benefits li { font-size: 14.5px; color: #d4d2cc; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+  .lp-benefits li:last-child { border-bottom: none; }
+  .lp-check { color: #4ade80; font-size: 13px; margin-top: 2px; flex-shrink: 0; }
+  .lp-cta { display: inline-block; background: var(--blue); color: #fff; font-size: 14px; font-weight: 600; padding: 13px 28px; border-radius: 8px; text-decoration: none; }
+  .lp-cta-sub { font-size: 12px; color: #7a7970; margin-top: 10px; }
+
+  .ai-intro { font-size: 15px; color: #333; line-height: 1.75; margin-bottom: 28px; }
+  .tool-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; transition: border-color .15s; }
+  .tool-card:hover { border-color: var(--blue); }
+  .tool-name { font-weight: 600; font-size: 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .tool-emoji { font-size: 16px; }
+  .tool-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .example-box { background: var(--blue-dim); border: 1px solid #c3cff8; border-radius: var(--radius); padding: 22px 24px; margin-top: 8px; }
+  .example-box .ex-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+  .example-box p { font-size: 14px; color: #1a2a6b; line-height: 1.72; }
+  .prompt-block { background: #f0f4ff; border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #1e3a8a; font-style: italic; line-height: 1.65; }
+
+  .footer { padding: 32px 0; text-align: center; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
+  .footer strong { color: var(--ink); }
+  .footer a { color: var(--blue); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  .reveal { opacity: 1; transform: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 12px 20px; }
+    nav .nav-links { display: none; }
+    .page { padding: 0 20px 80px; }
+    .hero { padding: 52px 0 40px; }
+    .tool-row { grid-template-columns: 1fr; }
+    .lp-box { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Bharath Raj</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#linkedin">LinkedIn</a></li>
+    <li><a href="#landing">Landing Page</a></li>
+    <li><a href="#ai">AI Tools</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- ABOUT -->
+  <div class="hero" id="about">
+    <span class="hero-tag">Marketing Portfolio - 2025</span>
+    <h1>Bharath Raj<br><span>Aspiring Marketing</span><br>Specialist</h1>
+    <p class="hero-bio">
+      I am a business management student with a genuine interest in SaaS marketing, content creation,
+      and how AI tools are changing the way teams communicate with customers.
+      I am drawn to B2B products like Desk365 because I believe great marketing starts with
+      understanding the product and then making that value impossible to ignore.
+    </p>
+    <div class="hero-contact">
+      <a href="/cdn-cgi/l/email-protection#a1c3c9c0d3c0d5c992968fd3c0cbe1c6ccc0c8cd8fc2cecc">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span class="__cf_email__" data-cfemail="cdafa5acbfacb9a5fefae3bfaca78daaa0aca4a1e3aea2a0">[email&#160;protected]</span>
+      </a>
+      <span class="contact-dot"></span>
+      <a href="tel:+917397757293">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45 12.8 12.8 0 0 0 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+        +91 73977 57293
+      </a>
+      <span class="contact-dot"></span>
+      <a href="https://www.linkedin.com/in/bharathraj27" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/bharathraj27
+      </a>
+    </div>
+  </div>
+
+  <!-- BLOG -->
+  <section class="section reveal" id="blog">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Blog Sample</h2>
+    </div>
+    <div class="card">
+      <div class="card-label">Blog Post</div>
+      <h2 class="blog-title">How AI is Transforming Customer Support</h2>
+      <div class="read-time">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        2 min read
+      </div>
+      <div class="blog-body">
+        <p>A few years ago, waiting two days for a reply to a support email was just normal. Today, customers expect answers in minutes, and AI is making that possible without burning out support teams.</p>
+        <h3>The Old Problem</h3>
+        <p>Most support teams spend the majority of their time on the same handful of questions. Password resets. Billing queries. "How do I do X?" tickets that get copy-pasted answers every single day. It is repetitive, slow, and leaves agents with less time for issues that actually need a human touch.</p>
+        <h3>What AI Changes</h3>
+        <p>AI-powered helpdesk tools are tackling this in a few concrete ways:</p>
+        <ul>
+          <li><strong>Auto-responses for common queries</strong> - The system recognises a familiar question and replies instantly, without an agent lifting a finger.</li>
+          <li><strong>Ticket categorisation and routing</strong> - Instead of manually sorting every request, AI tags and assigns tickets based on topic, urgency, and customer history.</li>
+          <li><strong>Suggested replies for agents</strong> - Even when a human needs to step in, AI drafts a response so the agent can review, tweak, and send in seconds.</li>
+          <li><strong>Sentiment detection</strong> - AI flags tickets from frustrated customers so teams can prioritise before a small issue turns into a public complaint.</li>
+        </ul>
+        <h3>The Real Win</h3>
+        <p>The goal is not to replace support agents. It is to remove the boring, repetitive parts of their day so they can focus on complex problems that actually need empathy and judgement. That is better for the team, and far better for the customer.</p>
+        <p>Platforms like Desk365 are a good example of this shift, combining ticketing, AI automation, and service management in a way that scales with a team rather than adding to their workload. As more SaaS companies build AI into their core workflows, the gap between fast support and great support is closing fast.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKEDIN -->
+  <section class="section reveal" id="linkedin">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">LinkedIn Post</h2>
+    </div>
+    <div class="linkedin-card">
+      <div class="card-label">LinkedIn - Engagement Post</div>
+      <div class="linkedin-header">
+        <div class="avatar">B</div>
+        <div>
+          <div class="linkedin-name">Bharath Raj</div>
+          <div class="linkedin-sub">Marketing | SaaS | Content</div>
+        </div>
+      </div>
+      <div class="linkedin-body">Your support team is probably spending 60% of their time on questions they have already answered.
+
+Not because they are slow.
+Because the process is broken.
+
+AI is quietly fixing this.
+
+Not by replacing agents, but by handling the repetitive stuff:
+• Auto-routing tickets to the right person
+• Drafting replies so agents just review and hit send
+• Flagging frustrated customers before things escalate
+• Answering common questions instantly, 24/7
+
+The teams winning at support right now are not working harder.
+They are working on problems that actually need a human.
+
+AI handles the volume. Humans handle the nuance.
+
+That is the shift.
+
+Curious - has your team started using AI in support? What is working?
+
+#CustomerSupport #SaaS #AITools #ProductMarketing</div>
+      <div class="linkedin-footer">
+        <span class="li-action">&#128077; Like</span>
+        <span class="li-action">&#128172; Comment</span>
+        <span class="li-action">&#128260; Repost</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANDING PAGE -->
+  <section class="section reveal" id="landing">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Landing Page Copy</h2>
+    </div>
+    <div class="lp-box">
+      <div class="lp-label">AI-Powered Helpdesk - Product Page</div>
+      <h2 class="lp-headline">Support that resolves,<br>not just <em>responds.</em></h2>
+      <p class="lp-sub">Desk365 helps your team close tickets faster with AI-driven automation, smart routing, and a unified inbox so customers get answers, not queues.</p>
+      <ul class="lp-benefits">
+        <li><span class="lp-check">&#10003;</span><span><strong>Instant AI replies</strong> for common queries. Customers do not wait, agents do not repeat themselves.</span></li>
+        <li><span class="lp-check">&#10003;</span><span><strong>Automatic ticket routing</strong> that puts every request in front of the right person, every time.</span></li>
+        <li><span class="lp-check">&#10003;</span><span><strong>Agent assist</strong> - AI drafts replies so your team can respond in seconds, not minutes.</span></li>
+        <li><span class="lp-check">&#10003;</span><span><strong>Works at any team size</strong> - from a 3-person startup to a 300-person enterprise support team.</span></li>
+      </ul>
+      <a class="lp-cta" href="#">Start Free - No Credit Card Needed</a>
+      <p class="lp-cta-sub">Trusted by 7,000+ teams across 60+ countries</p>
+    </div>
+  </section>
+
+  <!-- AI TOOLS -->
+  <section class="section reveal" id="ai">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">How I Use AI in Marketing</h2>
+    </div>
+    <p class="ai-intro">AI tools have become a core part of how I research, write, and plan content. Here is how I actually use them, not just the theory.</p>
+    <div class="tool-row">
+      <div class="tool-card">
+        <div class="tool-name"><span class="tool-emoji">&#129302;</span> ChatGPT</div>
+        <div class="tool-desc">My go-to for first drafts, brainstorming headline variations, and building content outlines. I use it to get from a blank page to a rough structure fast, then rewrite in my own voice.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name"><span class="tool-emoji">&#9889;</span> Claude</div>
+        <div class="tool-desc">Better for longer, more nuanced content like blog posts and landing page copy. Claude is less likely to sound robotic on the first pass and keeps tone consistent across long pieces.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name"><span class="tool-emoji">&#128269;</span> Perplexity</div>
+        <div class="tool-desc">I use this for research with sources. When I need to understand a topic fast, Perplexity pulls current, cited answers instead of guesses, which saves a lot of back-and-forth.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name"><span class="tool-emoji">&#128188;</span> GitHub Copilot</div>
+        <div class="tool-desc">Useful when building basic content tools or automating repetitive tasks like formatting bulk content. Even without deep coding knowledge, it helps get small scripts done.</div>
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="ex-label">Real Example - Custom ChatGPT for Consistent Content</div>
+      <p>For a SaaS product blog, I set up a custom ChatGPT with a system prompt that locked in the brand voice, target audience, and a list of phrases to always avoid (like "leverage", "delve", "revolutionise"). Every time I needed a new post, I would start there instead of re-explaining the context. It kept the tone consistent across drafts and saved time on briefing.</p>
+      <div class="prompt-block">Example system prompt: "You are a content writer for a B2B SaaS helpdesk tool. Our audience is IT managers and support leads at mid-size companies. Tone: direct, helpful, no fluff. Avoid: 'leverage', 'game-changer', 'revolutionise'. Always include a practical takeaway in the conclusion."</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <strong>Bharath Raj</strong> - Marketing Portfolio<br><br>
+    <a href="/cdn-cgi/l/email-protection#711319100310051942465f03101b31161c10181d5f121e1c"><span class="__cf_email__" data-cfemail="2d4f454c5f4c59451e1a035f4c476d4a404c4441034e4240">[email&#160;protected]</span></a>
+    &nbsp;·&nbsp;
+    +91 73977 57293
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/bharathraj27" target="_blank">linkedin.com/in/bharathraj27</a>
+    <br><br>
+  </div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-c
